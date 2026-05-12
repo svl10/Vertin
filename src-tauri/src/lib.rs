@@ -13,7 +13,11 @@ pub struct GitCommit {
 fn get_git_log(path: String) -> Result<Vec<GitCommit>, String> {
     let output = Command::new("git")
         .current_dir(&path)
-        .args(["log", "--pretty=format:%H%x1f%an%x1f%ad%x1f%s", "--date=short"])
+        .args([
+            "log",
+            "--pretty=format:%H%x1f%an%x1f%ad%x1f%s",
+            "--date=short",
+        ])
         .output()
         .map_err(|e| e.to_string())?;
 
@@ -34,7 +38,7 @@ fn get_git_log(path: String) -> Result<Vec<GitCommit>, String> {
             });
         }
     }
-    
+
     Ok(commits)
 }
 

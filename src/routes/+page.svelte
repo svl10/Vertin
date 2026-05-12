@@ -14,7 +14,14 @@
 
   let _theme = $state("slate");
   let themes = ["slate", "emerald", "rose", "violet", "amber"];
-
+  const themeColors = {
+    slate: '#3b82f6',    // Blue
+    emerald: '#10b981',  // Green
+    rose: '#f43f5e',     // Red/Pink
+    violet: '#8b5cf6',   // Purple
+    amber: '#f59e0b',    // Yellow/Orange
+    sky: '#0ea5e9',      // Optional sixth theme, light blue
+  };
   function setTheme(theme: string) {
     _theme = theme;
     if (theme === "slate") {
@@ -77,9 +84,7 @@
           {#each themes as t}
             <button
               class="theme-dot {t === _theme ? 'active' : ''}"
-              style="--dot-color: {t === 'slate'
-                ? '#3b82f6'
-                : `var(--primary)`};"
+              style="--dot-color: {themeColors[t]};"
               onclick={() => setTheme(t)}
               aria-label={t}
             ></button>
